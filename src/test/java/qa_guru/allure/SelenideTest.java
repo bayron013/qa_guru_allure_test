@@ -1,10 +1,11 @@
 package qa_guru.allure;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.linkText;
@@ -24,11 +25,10 @@ public class SelenideTest {
         $(".search-input").click();
         $("#query-builder-test").setValue("eroshenkoam/allure");
         $("#query-builder-test").submit();
+        $(linkText("eroshenkoam/allure-qaguru")).click();
+        $("#issues-tab").click();
+        $(withText("Заменяем степы на Listener")).should(Condition.exist);
 
-        $(linkText("eroshenkoam/allure-example")).click();
-        $("#_R_dsraqdb_--label").click();
-
-        System.out.println("nou");
     }
 
 
